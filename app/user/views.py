@@ -4,9 +4,12 @@ from flask_mako import render_template
 from .forms import ChangePasswordForm 
 from flask_login import current_user,login_required
 from app.models import Book,db
-from flask import request, redirect, url_for
+from app import cache
+from flask import request, redirect, url_for, flash
+
 @user.route('/')
 @user.route('/index')
+@cache.cached(timeout=60*60*6,query_string=True)
 def index():
 	#books = Book.query.all()
 	page = request.args.get('page',1,type=int)

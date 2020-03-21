@@ -36,23 +36,23 @@
     	</li>
   	</ul>
 
-	<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-		<ul class="navbar-nav">
+	<div class="collapse navbar-collapse justify-content-end">
+		<ul class="navbar-nav justify-content-end">
 
 		<!-- Search form --> 
-	  	<form class="form-inline">
-	    <input class="form-control" type="text" placeholder="Search">
+	  	<form class="form-inline" action="${ url_for('user.search')}">
+	    <input class="form-control" name="q" type="text" placeholder="Search">
 	    <button class="btn btn-success" type="submit">Search</button>
 	    </form>
 
-	    % if False:
+	    % if current_user.is_authenticated:
 	        <li class="nav-item dropdown">
-	      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	        		user here
+	      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i class="fa fa-user"></i>
+	        		${current_user.username}
 	      		</a>
 	      	<div class="dropdown-menu">
-	        	<a class="dropdown-item" href="#"><i class="fa fa-home"></i> 主页</a>
-	        	<a class="dropdown-item" href="${url_for('auth.signin')}"><i class="fa fa-sign-out"></i> 退出</a>
+	        	<a class="dropdown-item" href="${url_for('user.user',uid=current_user.uid)}"><i class="fa fa-home"></i> 主页</a>
+	        	<a class="dropdown-item" href="${url_for('auth.signout')}"><i class="fa fa-sign-out"></i> 退出</a>
 	      	</div>
 	      	<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-bell"></i> 消息</a></li>
 	    % else:

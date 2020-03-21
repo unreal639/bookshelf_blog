@@ -1,4 +1,24 @@
 <%inherit file="admin.html"/>
 <%block name="show_detail">
-<h1>this is book info</h1>
+<h1>用户列表</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>userid</th>
+      <th>用户名</th>
+      <th>E-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+  	%if users:
+  		%for user in users:
+    	<tr>
+      		<td>${user.uid}</td>
+      		<td>${user.username}</td>
+      		<td>${user.email}</td>
+    	</tr>
+    	%endfor
+    %endif
+  </tbody>
+</table>
 </%block>

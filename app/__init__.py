@@ -3,11 +3,13 @@ from flask_mako import MakoTemplates
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_whooshee import Whooshee
+from flask_caching import Cache
 
 mako = MakoTemplates()
 db = SQLAlchemy()
 whooshee = Whooshee()
 login_manager = LoginManager()
+cache = Cache(config={'CACHE_TYPE': 'simple'})
 login_manager.login_view = 'login' 
 login_manager.login_message_category = 'warning'
 
@@ -20,6 +22,7 @@ def create_app():
 	login_manager.init_app(app)
 	db.init_app(app)
 	whooshee.init_app(app)
+	cache.init_app(app)
 	#whooshee.reindex()
 
 	from .admin import admin as admin_bp

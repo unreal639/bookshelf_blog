@@ -1,7 +1,7 @@
 from . import admin
 from flask_mako import render_template
 from app.admin.forms import AddbookForm
-from app.models import Book,db
+from app.models import Book, User, db
 from flask import redirect,url_for,flash,request,current_app,request
 
 @admin.route('/admin')
@@ -11,13 +11,13 @@ def admin_index():
 @admin.route('/admin/bookinfo')
 def bookinfo():
 	books = Book.query.all()
-	print(books)
 	return render_template('/admin/bookinfo.html',books=books)
 
 
 @admin.route('/admin/userinfo')
 def userinfo():
-	return render_template('/admin/userinfo.html')
+	users = User.query.all()
+	return render_template('/admin/userinfo.html',users=users)
 
 @admin.route('/admin/add_book',methods=['GET','POST'])
 def add_book():
