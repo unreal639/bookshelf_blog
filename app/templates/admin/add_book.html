@@ -1,0 +1,13 @@
+<%inherit file="admin.html"/>
+<%block name="show_detail">
+
+<h1>添加书籍</h1>
+<form class="form" method="post" enctype="multipart/form-data">
+${ form.title.label }${ form.title(class_="form-control") }<br>
+${ form.body.label }${ form.body(class_="form-control",rows=9) }<br>
+${ form.image.label }${ form.image }<br>
+<input type="submit" class="btn btn-success btn-lg" value="添加">
+
+</form>
+
+</%block>

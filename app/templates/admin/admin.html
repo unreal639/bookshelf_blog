@@ -1,0 +1,24 @@
+<%inherit file="base.html"/>
+<%block name="main">
+<div class="row">
+<div class="col-md-3">
+<ul class="nav nav-pills flex-column">
+  <li class="nav-item"><a class="nav-link active" href="${url_for('admin.admin_index')}">Home</a></li>
+  % for label,url in {'书籍管理':url_for('admin.bookinfo'),'用户管理':url_for('admin.userinfo'),'API列表':'#'}.items():
+	<li class="nav-item"><a class="nav-link" href="${url}">${label}</a></li>
+  %endfor
+</ul>
+</div>
+<div class="col-md-7">
+	% for message in get_flashed_messages(with_categories=True):
+	<div class="alert alert-${message[0]}" role="alert">
+  		<strong>${message[1]}</strong>
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+	% endfor
+	<%block name="show_detail"/>
+</div>
+</div>
+</%block>

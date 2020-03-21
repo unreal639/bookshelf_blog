@@ -1,0 +1,14 @@
+<%inherit file="base.html"/>
+<%block name="main">
+<div class="col-md-3">
+<ul class="nav nav-pills flex-column">
+  <li class="nav-item"><a class="nav-link active" href="${url_for('admin.admin_index')}">Home</a></li>
+  % for label,url in {'个人信息':'#','消息列表':'#','修改密码':'#'}.items():
+	<li class="nav-item"><a class="nav-link" href="${url}">${label}</a></li>
+  %endfor
+</ul>
+</div>
+<div>
+	<%block name="user_info"/>
+</div>
+</%block>

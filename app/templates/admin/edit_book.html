@@ -1,0 +1,14 @@
+<%inherit file="admin.html"/>
+<%block name="show_detail">
+<h1>书籍信息编辑</h1>
+<form class="form" method="post">
+	<label for="name">标题</label>
+	<input type="text" class="form-control" id="title" name="title" value="${book.title}">
+
+	<label for="name">内容</label>
+	<textarea class="form-control" id="body" name="body" rows="9">${book.body}</textarea>
+	
+	<input type="submit" class="btn btn-success btn-lg" value="确定">
+</form>
+
+</%block>

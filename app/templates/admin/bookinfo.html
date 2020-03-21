@@ -1,0 +1,28 @@
+<%inherit file="admin.html"/>
+<%block name="show_detail">
+<h1>书籍列表</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>bookid</th>
+      <th>标题</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+  	%if books:
+  		%for book in books:
+    	<tr>
+      		<td>${book.bookid}</td>
+      		<td>${book.title}</td>
+      		<td>
+      			<a href="${url_for('admin.edit_book',book_id=book.bookid)}" class="btn btn-secondary btn-sm">编辑</a>
+      			<a href="${url_for('admin.del_book',book_id=book.bookid)}" class="btn btn-danger btn-sm">删除</a>
+      		</td>
+    	</tr>
+    	%endfor
+    %endif
+  </tbody>
+</table>
+<a href="${url_for('admin.add_book')}" class="btn btn-success btn-lg">添加</a>
+</%block>

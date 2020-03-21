@@ -1,0 +1,14 @@
+<%inherit file="base.html"/>
+<%block name="main">
+<div class="row">
+  <div class="col-md-4 offset-md-1">
+  	<% book_url = url_for('static',filename='./images/'+book.cover_path) %>
+  	<img src="${book_url}" class="img-fluid" alt="Responsive image">
+  </div>
+  <div class="col-md-5 ">
+  	<h1>${book.title}</h1>
+  	<p>${book.body}</p>
+  </div>
+
+</div>
+</%block>
