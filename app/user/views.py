@@ -9,7 +9,7 @@ from flask import request, redirect, url_for, flash
 
 @user.route('/')
 @user.route('/index')
-@cache.cached(timeout=60*60*6,query_string=True)
+#@cache.cached(timeout=60*60*6,query_string=True)
 def index():
 	#books = Book.query.all()
 	page = request.args.get('page',1,type=int)
@@ -27,6 +27,9 @@ def search():
 	q = request.args.get('q', '')
 	if q == '':
 		flash('输入要搜索的关键字…', 'warning')
+		return redirect(url_for('user.index'))
+	elif len(q) < 3:
+		flash('至少输入3个字符！','warning')
 		return redirect(url_for('user.index'))
 	page = request.args.get('page', 1, type=int)
 	pagination = Book.query.whooshee_search(q).paginate(page, per_page=6)

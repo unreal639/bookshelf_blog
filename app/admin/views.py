@@ -1,3 +1,4 @@
+# encoding: utf-8
 from . import admin
 from flask_mako import render_template
 from app.admin.forms import AddbookForm

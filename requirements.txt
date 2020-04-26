@@ -1,0 +1,12 @@
+gunicorn
+gevent
+flask
+flask-mako
+flask-sqlalchemy
+flask-login
+flask-whooshee
+flask-caching
+flask-wtf
+wtforms
+email_validator
+psutil

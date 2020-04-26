@@ -1,3 +1,4 @@
+# encoding: utf-8
 from flask_mako import render_template
 from . import auth
 from app.auth.forms import LoginForm,RegisterForm
@@ -25,11 +26,16 @@ def signin():
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=form.email.data).first()
-		if user is not None and user.verify_password(form.password.data):
+		if user is None:
+			flash('用户不存在,需要在下方注册！','danger')
+			return redirect(url_for('auth.signup'))
+		elif user.verify_password(form.password.data):
 			login_user(user)
 			flash('登录成功', 'success')
 			return redirect(url_for('user.index'))
-		flash("登录失败！", 'danger')
+		else:
+			flash("密码错误！", 'danger')
+			return redirect(url_for('auth.signin'))
 	return render_template('/auth/signin.html',
 							title='signin',
 							form=form)
