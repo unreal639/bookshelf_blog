@@ -1,0 +1,8 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+    worker:
+    command:
+      - docker run -d -p 80:80 --name test-flask-1 testflask
+    image: web
